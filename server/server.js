@@ -4,6 +4,7 @@ const userRoutes = require("./routes/users-routes.js");
 const organizationRoutes = require("./routes/organizations-routes.js");
 const projectsRoutes = require("./routes/projects-routes.js");
 const tasksRoutes = require("./routes/tasks-routes.js");
+const commentsRoutes = require("./routes/comments-routes.js");
 
 const port = process.env.PORT || 5000;
 
@@ -29,6 +30,9 @@ app.get("/api/projects/:id", projectsRoutes.getProjectByID);
 app.post("/api/tasks", tasksRoutes.createTask);
 app.patch("/api/tasks/:id", tasksRoutes.updateTask);
 app.get("/api/tasks/:id", tasksRoutes.getTaskByID);
+
+app.post("/api/comments", commentsRoutes.addComment);
+app.get("/api/comments/:task_id", commentsRoutes.getAllCommentsByTaskId);
 
 if (process.env.NODE_ENV !== "test") {
   app.listen(port, () => console.log(`Listening on port ${port}`));
