@@ -2,6 +2,7 @@ const app = require("./server-config.js");
 const routes = require("./server-routes.js");
 const userRoutes = require("./routes/users-routes.js");
 const organizationRoutes = require("./routes/organizations-routes.js");
+const projectsRoutes = require("./routes/projects-routes.js");
 
 const port = process.env.PORT || 5000;
 
@@ -20,6 +21,9 @@ app.get("/api/users/:id", userRoutes.getUser);
 
 app.post("/api/organizations", organizationRoutes.createOrganization);
 app.get("/api/organizations/:id", organizationRoutes.getOrgById);
+
+app.post("/api/projects", projectsRoutes.createProject);
+app.get("/api/projects/:id", projectsRoutes.getProjectByID);
 
 if (process.env.NODE_ENV !== "test") {
   app.listen(port, () => console.log(`Listening on port ${port}`));
